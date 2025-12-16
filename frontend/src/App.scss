@@ -1,0 +1,126 @@
+
+@use '@carbon/react/scss/themes';
+@use '@carbon/react/scss/theme' with (
+  $theme: themes.$g100,
+);
+@use '@carbon/react';
+@use '@carbon/grid';
+
+// Emit the flex-grid styles
+@include grid.flex-grid();
+:root {
+  --page-bg: #0b1221;
+  --page-veil: linear-gradient(135deg, #0b1221 0%, #0f1f32 45%, #0c2339 100%);
+  --surface-primary: #10253d;
+  --surface-secondary: #132f4c;
+  --surface-muted: #0f1c31;
+  --accent-primary: #0ea5e9;
+  --accent-secondary: #f59e0b;
+  --border-strong: #1f3b5c;
+  --text-primary: #e6f1ff;
+  --text-secondary: #b6c6dc;
+  --shadow-soft: 0 16px 32px rgba(0, 0, 0, 0.4);
+}
+
+body,
+.cds--body {
+  background: var(--page-veil);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.cds--content {
+  min-height: 100vh;
+  background: radial-gradient(circle at 18% 20%, rgba(14, 165, 233, 0.12), transparent 32%),
+    radial-gradient(circle at 82% 10%, rgba(245, 158, 11, 0.12), transparent 28%),
+    linear-gradient(135deg, rgba(16, 37, 61, 0.9), rgba(15, 28, 49, 0.95));
+  color: var(--text-primary);
+  padding-bottom: 2rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-primary);
+}
+
+p,
+span,
+label {
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--accent-primary);
+}
+
+.cds--header {
+  background: linear-gradient(120deg, #0f2438, #102c46);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.cds--header__action svg,
+.cds--header__menu-item svg,
+.cds--header__menu-title,
+.cds--header__name {
+  fill: var(--text-primary);
+  color: var(--text-primary);
+}
+
+.cds--tile {
+  background: var(--surface-secondary);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-soft);
+  color: var(--text-primary);
+}
+
+.cds--btn--primary {
+  background-color: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+
+.cds--btn--primary:hover,
+.cds--btn--primary:focus-visible {
+  background-color: #09c3ff;
+  border-color: #09c3ff;
+}
+
+.cds--btn--ghost {
+  color: var(--accent-primary);
+}
+
+.cds--btn.cds--btn--icon-only.cds--header__action svg {
+  fill: var(--text-primary);
+}
+
+// Spinner overlay
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(11, 18, 33, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.loading-content span {
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}

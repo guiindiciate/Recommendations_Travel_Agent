@@ -1,0 +1,28 @@
+.sidenav {
+  background-color: #10253d;
+  color: var(--text-primary) !important;
+  top: 2.95rem !important;
+}
+/* .iconsidenav > button{
+  color:#fff !important
+} */
+
+.sidenavicon{
+  fill: var(--text-primary) !important;
+}
+
+.appicon{
+  margin-right:1rem;
+}
+
+.headercarbon{
+  background-color: #0f2438 !important;
+  color: var(--text-primary);
+}
+.headername{
+  color: var(--text-primary) !important;
+  font-size:1rem;
+}
+.userprofile{
+  fill: var(--text-primary) !important;
+}
