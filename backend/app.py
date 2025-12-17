@@ -35,6 +35,50 @@ def health():
 
 @app.post("/getrecommendations")
 async def get_recommendations(user_input: UserQuery):
+    """
+    Generate travel and style recommendations using a LangGraph-based LLM workflow.
+
+    This endpoint receives a structured user query and executes a multi-step
+    LangGraph pipeline that streams intermediate results from different
+    reasoning and recommendation nodes.
+
+    The graph is executed in streaming mode, allowing the API to:
+    - Collect intermediate reasoning steps
+    - Aggregate outputs from multiple agents (e.g. travel and style recommenders)
+    - Safely extract and compose a final response
+
+    Workflow overview:
+    1. Receives a `UserQuery` payload containing contextual data
+       (e.g. user_id, event_id, preferences).
+    2. Initializes the LangGraph execution with an empty recommendation state.
+    3. Streams graph steps and stores intermediate node outputs.
+    4. Extracts:
+       - Travel recommendation text from the `travel_recommender` node
+       - Image/style recommendations from the `style_recommender` node
+    5. Returns a consolidated response aligned to the requesting user and event.
+
+    Args:
+        - user_input (UserQuery)
+    Returns:
+        - dict:
+
+    Error Handling:
+        - GraphRecursionError:
+            Returned when the LangGraph execution exceeds its recursion limit,
+            preventing infinite or cyclic graph execution.
+
+        - Generic Exception:
+            Catches any unexpected runtime error and returns the error message
+            for debugging and observability purposes.
+
+    Response Codes:
+        200 OK:
+            Recommendations were generated successfully.
+
+        500 Internal Server Error:
+            An unexpected error occurred during graph execution or response
+            assembly.
+    """
     print("\n🚀 API /getrecommendations called")
     print("Request body:", user_input.query)
 
